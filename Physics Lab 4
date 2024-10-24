@@ -1,0 +1,40 @@
+import numpy as np
+
+# Free-fall Data (in m/s)
+free_fall_data = {
+    'rubber_tube_35cm': [1.35, 1.37, 1.44, 1.43, 1.41, 1.39, 1.39, 1.38, 1.38, 1.41, 1.40, 1.41, 1.37, 1.43, 1.26, 1.36, 1.38, 1.43, 1.43, 1.42],
+    'rubber_tube_45cm': [1.81, 1.30, 1.89, 1.79, 2.00, 2.01, 1.07, 1.66, 2.00, 1.79, 1.17, 2.00, 1.97, 1.84, 1.89, 1.90, 1.90, 1.90, 1.99, 1.94],
+    'rubber_tube_55cm': [2.45, 2.12, 2.38, 2.02, 2.42, 2.35, 2.10, 2.48, 2.20, 2.07, 2.40, 2.47, 2.46, 2.12, 2.32, 2.46, 2.44, 1.86, 1.98, 2.09],
+    'paper_tube_35cm': [1.23, 1.25, 1.30, 1.30, 1.18, 1.03, 1.25, 1.13, 1.25, 1.20, 1.30, 1.26, 1.26, 1.27, 1.28, 1.34, 1.36, 1.28, 1.22, 1.20],
+    'paper_tube_55cm': [2.09, 2.15, 2.10, 1.92, 1.97, 2.07, 1.99, 1.99, 2.03, 2.12, 2.07, 2.01, 1.84, 2.03, 1.96, 2.06, 2.02, 2.03, 1.95, 2.07],
+    'paper_tube_75cm': [2.57, 2.50, 2.62, 2.47, 2.48, 2.61, 2.54, 2.39, 2.47, 2.58, 2.62, 2.40, 2.48, 2.38, 2.38, 2.35, 2.44, 2.58, 2.63, 2.54]
+}
+
+# Pendulum Data (in m/s)
+pendulum_data = {
+    'release_10cm': [1.43, 1.39, 1.40, 1.41, 1.36, 1.36, 1.37, 1.36, 1.36, 1.35, 1.34, 1.34, 1.33, 1.32, 1.35, 1.32, 1.31, 1.32, 1.30, 1.30, 1.29, 1.29, 1.28, 1.28, 1.27],
+    'release_8cm': [1.22, 1.26, 1.14, 1.11, 1.11, 1.12, 1.10, 1.10, 1.09, 1.09, 1.08, 1.08, 1.07, 1.07, 1.07, 1.06, 1.06, 1.05, 1.05, 1.05, 1.04, 1.04, 1.03, 1.03, 1.02, 1.02, 1.01, 1.01, 1.00, 1.00, 0.99, 0.99],
+    'release_6cm': [1.08, 1.12, 1.09, 1.09, 1.10, 1.07, 1.06, 1.06, 1.06, 1.05, 1.04, 1.04, 1.04, 1.03, 1.03, 1.03, 1.02, 1.02, 1.01, 1.01, 1.00, 1.00, 0.99, 0.99, 0.98, 0.98, 0.97, 0.98, 0.98, 0.96, 0.96],
+    'release_4cm': [0.83, 0.84, 0.84, 0.84, 0.85, 0.82, 0.82, 0.82, 0.81, 0.81, 0.80, 0.80, 0.80, 0.79, 0.79, 0.79, 0.78, 0.78, 0.77, 0.77, 0.77, 0.76, 0.76, 0.76, 0.75, 0.75, 0.74, 0.74, 0.74, 0.73, 0.73, 0.73]
+}
+
+def analyze_data(data):
+    """ Analyze data to get average and standard deviation. """
+    averages = {key: np.mean(values) for key, values in data.items()}
+    std_devs = {key: np.std(values) for key, values in data.items()}
+    return averages, std_devs
+
+# Analyze Free-Fall Data
+free_fall_averages, free_fall_std_devs = analyze_data(free_fall_data)
+
+# Analyze Pendulum Data
+pendulum_averages, pendulum_std_devs = analyze_data(pendulum_data)
+
+# Print Results
+print("Free-Fall Average Velocities (m/s):")
+for key in free_fall_averages:
+    print(f"{key}: {free_fall_averages[key]:.2f} ± {free_fall_std_devs[key]:.2f}")
+
+print("\nPendulum Average Velocities (m/s):")
+for key in pendulum_averages:
+    print(f"{key}: {pendulum_averages[key]:.2f} ± {pendulum_std_devs[key]:.2f}")
